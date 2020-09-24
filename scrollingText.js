@@ -5,18 +5,8 @@ const textItems =
 	" reckless downhill longboarder.",
 	" passionate games developer.",
 	" computer science student.",
-	" massive fucking nerd."
+	" massive fucking nerd.",
 ];
-
-// global variables
-var pos = 0;
-var speed;
-var rng;
-var queue = [];
-
-// booleans
-var typing = 1;
-var wait = 0;
 
 // constants
 const start = "Is a";
@@ -24,6 +14,16 @@ const typeSpeed = 100;
 const eraseSpeed = 30;
 const waitTime = 3000;
 const htmlElement = "subheading";
+
+// global variables
+var pos = 0;
+var rng;
+var queue = [];
+var speed = typeSpeed;
+
+// booleans
+var typing = 1;
+var wait = 0;
 
 // type sentence starter
 function initText()
@@ -82,6 +82,5 @@ function type()
 // run on page load
 window.onload = function()
 {
-	speed = typeSpeed;
 	initText();
 }
