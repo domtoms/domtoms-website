@@ -3,12 +3,14 @@ const textItems =
 [
 	" retro anime enthusiast.",
 	" reckless downhill longboarder.",
-	" passionate indie game developer.",
+	" casual indie game developer.",
 	" computer science student.",
 	" massive fucking nerd.",
 	" caffine and nicotine addict.",
 	" former graphic designer wannabe.",
-	" Playstation 2 player in 2020."
+	" Playstation 2 player in 2020.",
+	" bisexual, probably.",
+	" jobseeker, please hire me."
 ];
 
 // constants

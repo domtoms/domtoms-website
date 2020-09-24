@@ -37,7 +37,7 @@ h1
 #subheading
 {
 	font-size: 30px;
-	margin-top: -6px;
+	margin-top: 0px;
 }
 
 .item1 {grid-area: portrait;}
