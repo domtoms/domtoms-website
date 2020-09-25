@@ -1,14 +1,17 @@
+// get the current year
+const year = new Date().getFullYear();
+
 // list of subheadings
 const textItems =
 [
 	" retro anime enthusiast.",
-	" reckless downhill longboarder.",
+	" boarderline suicidal longboarder.",
 	" casual indie game developer.",
 	" computer science student.",
 	" massive fucking nerd.",
 	" caffine and nicotine addict.",
 	" former graphic designer wannabe.",
-	" Playstation 2 player in 2020.",
+	" Playstation 2 player in " + year + ".",
 	" bisexual, probably.",
 	" jobseeker, please hire me."
 ];
@@ -69,15 +72,39 @@ function type()
 	// type
 	if (typing)
 	{
-		if (pos < text.length) {document.getElementById(htmlElement).innerHTML += text.charAt(pos); pos++;}
-		else if (pos == text.length){speed = eraseSpeed; typing = 0; pos = 0; wait = 1; setTimeout(function(){wait = 0; type()}, waitTime);}
+		if (pos < text.length)
+		{
+			document.getElementById(htmlElement).innerHTML += text.charAt(pos);
+			pos++;
+		}
+		else if (pos == text.length)
+		{
+			speed = eraseSpeed; typing = 0;
+			pos = 0;
+			wait = 1;
+			setTimeout(function()
+			{
+				wait = 0;
+				type()
+			}, waitTime);
+		}
 	}
 	
 	// erase
 	else if (!typing)
 	{
-		if (pos < text.length + 1) {document.getElementById(htmlElement).innerHTML = start + text.substring(0, text.length - pos); pos++;}
-		else if (pos == text.length + 1){speed = typeSpeed; typing = 1; pos = 0; randomWord();}
+		if (pos < text.length + 1)
+		{
+			document.getElementById(htmlElement).innerHTML = start + text.substring(0, text.length - pos);
+			pos++;
+		}
+		else if (pos == text.length + 1)
+		{
+			speed = typeSpeed;
+			typing = 1;
+			pos = 0;
+			randomWord();
+		}
 	}
 	
 	// loop function
