@@ -68,35 +68,6 @@ function update()
 		}
 	}
 	
-	// touch buttons
-	if (mobile)
-	{
-		ctx.globalAlpha = 0.4;
-		
-		// up button
-		ctx.drawImage(touch, 32, c.height - 64);
-		
-		// right button
-		ctx.translate(64, c.height - 48);
-		ctx.rotate(90 * Math.PI / 180);
-		ctx.drawImage(touch, 0, 0);
-		ctx.setTransform(1, 0, 0, 1, 0, 0);
-		
-		// down button
-		ctx.translate(48, c.height - 16);
-		ctx.rotate(180 * Math.PI / 180);
-		ctx.drawImage(touch, 0, 0);
-		ctx.setTransform(1, 0, 0, 1, 0, 0);
-		
-		// left button
-		ctx.translate(16, c.height - 32);
-		ctx.rotate(270 * Math.PI / 180);
-		ctx.drawImage(touch, 0, 0);
-		ctx.setTransform(1, 0, 0, 1, 0, 0);
-		
-		ctx.globalAlpha = 1;
-	}
-	
 	// game
 	if (init)
 	{
@@ -203,6 +174,35 @@ function update()
 				ctx.font = "10px Roboto";
 				ctx.fillText("Score: " + score, 10, 18);
 				ctx.fillText("Hi-Score: " + hiScore, 10, 28);
+				
+				// touch buttons
+				if (mobile)
+				{
+					ctx.globalAlpha = 0.4;
+					
+					// up button
+					ctx.drawImage(touch, 22, c.height - 52);
+					
+					// right button
+					ctx.translate(52, c.height - 38);
+					ctx.rotate(90 * Math.PI / 180);
+					ctx.drawImage(touch, 0, 0);
+					ctx.setTransform(1, 0, 0, 1, 0, 0);
+					
+					// down button
+					ctx.translate(38, c.height - 8);
+					ctx.rotate(180 * Math.PI / 180);
+					ctx.drawImage(touch, 0, 0);
+					ctx.setTransform(1, 0, 0, 1, 0, 0);
+					
+					// left button
+					ctx.translate(8, c.height - 22);
+					ctx.rotate(270 * Math.PI / 180);
+					ctx.drawImage(touch, 0, 0);
+					ctx.setTransform(1, 0, 0, 1, 0, 0);
+					
+					ctx.globalAlpha = 1;
+				}
 			}
 			
 			else if (dead)
