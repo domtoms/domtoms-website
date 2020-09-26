@@ -134,6 +134,9 @@ function update()
 					ctx.drawImage(sprites[i].img, Math.round(sprites[i].x), Math.round(sprites[i].y));
 					sprites[i].y++;
 					
+					// cleanup offscreen sprites
+					if (sprites[i].y > c.height) delArr.push(i);
+					
 					// collision
 					if (player.x + (miku.width/2)  > sprites[i].x && player.x < (sprites[i].x + sprites[i].img.width) &&
 						player.y + (miku.height/2) > sprites[i].y && player.y < (sprites[i].y + sprites[i].img.height))
