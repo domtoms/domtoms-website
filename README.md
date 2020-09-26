@@ -1,3 +1,4 @@
 # domtoms-website
 
-source code for my personal website
+source for my personal website  
+click on my face to play a cool secret game
