@@ -28,15 +28,21 @@ var sprites = [];
 var drawChar = 1;
 var score = 0;
 var hiScore = 0;
+var touchscreen = 0;
 var mobile = 0;
 
 // touchscreen buttons
 const buttons = [
-	{x: 22, y: 52},
-	{x: 36, y: 38},
-	{x: 08, y: 38},
-	{x: 22, y: 24},
+	{x: 22, y: 52, key: 0},
+	{x: 36, y: 38, key: 1},
+	{x: 22, y: 24, key: 2},
+	{x: 08, y: 38, key: 3},
 ];
+
+var touchPos = {
+	x: undefined,
+	y: undefined,
+};
 
 // objects and classes
 var player =
@@ -117,10 +123,26 @@ function update()
 				movY = 0;
 				
 				// keyboard inputs
-				if (keys.w || keys.ArrowUp)    movY--;
-				if (keys.s || keys.ArrowDown)  movY++;
-				if (keys.a || keys.ArrowLeft)  movX--;
+				if (keys.w || keys.ArrowUp) movY--;
+				if (keys.s || keys.ArrowDown) movY++;
+				if (keys.a || keys.ArrowLeft) movX--;
 				if (keys.d || keys.ArrowRight) movX++;
+				
+				// touch inputs
+				for (var i = 0; i < buttons.length; i++)
+				{
+					if (touchPos.x > buttons[i].x && touchPos.x < buttons[i].x + touch.width && touchPos.y >
+					   (c.height - buttons[i].y) && touchPos.y < (c.height - buttons[i].y) + touch.height)
+					{
+						switch(buttons[i].key)
+						{
+							case 0: movY--; break;
+							case 1: movX++; break;
+							case 2: movY++; break;
+							case 3: movX--; break;
+						}
+					}
+				}
 				
 				// move player
 				player.x += movX;
@@ -183,9 +205,8 @@ function update()
 				ctx.fillText("Score: " + score, 10, 18);
 				ctx.fillText("Hi-Score: " + hiScore, 10, 28);
 				
-				// touch buttons
-				/*
-				if (mobile)
+				// touch buttons 
+				if (touchscreen && mobile)
 				{
 					ctx.globalAlpha = 0.4;
 					
@@ -210,14 +231,8 @@ function update()
 					ctx.drawImage(touch, 0, 0);
 					ctx.setTransform(1, 0, 0, 1, 0, 0);
 					
-					for (var i = 0; i < buttons.length; i++)
-					{
-						ctx.fillRect(buttons[i].x, c.height - buttons[i].y, 16, 16);
-					}
-					
 					ctx.globalAlpha = 1;
 				}
-				*/
 			}
 			
 			else if (dead)
@@ -313,7 +328,8 @@ function initBg()
 	resizeCanvas();
 	
 	// check if device has touchscreen
-	if ("ontouchstart" in window) mobile = true;
+	if ("ontouchstart" in window) touchscreen = true;
+	if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) mobile = true;
 	
 	// begin loops
 	setInterval(update, 1000/60);
@@ -381,4 +397,23 @@ c.oncontextmenu = function(e)
 {
 	e.preventDefault();
 	e.stopPropagation();
+}
+
+// touchscreen input
+if ("ontouchstart" in window)
+{
+	ontouchstart = function(e)
+	{	
+		touchPos.x = e.touches[0].clientX / (window.innerWidth / c.width);
+		touchPos.y = e.touches[0].clientY / (window.innerHeight / c.height);
+	}
+}
+
+if ("ontouchend" in window)
+{
+	ontouchend = function(e)
+	{
+		touchPos.x = undefined;
+		touchPos.y = undefined;
+	}
 }
