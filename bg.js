@@ -12,6 +12,7 @@ var boom = new Image(); boom.src = "boom.png";
 // audio
 var boomsfx = new Audio("boom.wav");
 var leeksfx = new Audio("leek.wav");
+var playsfx = new Audio("play.wav");
 
 // global variables
 var scroll = 0;
@@ -200,6 +201,9 @@ function gameInit()
 	dead = 0;
 	deathFrame = 0;
 	drawChar = 1;
+	
+	// play sound
+	playsfx.play();
 	
 	// set player starting pos
 	player.x = (c.width/2) - (miku.width/4);
