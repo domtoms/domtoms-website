@@ -8,6 +8,7 @@ bg.src = "bg.png"
 
 // global variables
 var scroll = 0;
+var init = 0;
 
 // update loop
 function update()
@@ -16,7 +17,7 @@ function update()
 	ctx.clearRect(0, 0, c.width, c.height);
 	
 	// update scroll
-	scroll += 0.1;
+	scroll += 0.5;
 	if (scroll > bg.width)
 	{
 		scroll = 0;
@@ -34,6 +35,15 @@ function update()
 	}
 }
 
+// init game
+function gameInit()
+{
+	if (init) return;
+	init = 1;
+	document.getElementById("headerText").className += "hidden";
+	document.getElementById("footer").className += "hidden";
+}
+
 // on window resize
 window.onresize = function()
 {
@@ -43,15 +53,15 @@ window.onresize = function()
 function resizeCanvas()
 {
 	// resize canvas
-	c.width = window.innerWidth / 6;
-	c.height = window.innerHeight / 6;
+	c.width = window.innerWidth / 5;
+	c.height = window.innerHeight / 5;
 }
 
 // initialize bg
 function initBg()
 {
 	resizeCanvas();
-	setInterval(update);
+	setInterval(update, 1000/60);
 }
 
 // disable right click
