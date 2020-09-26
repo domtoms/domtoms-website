@@ -22,12 +22,14 @@ function update()
 		scroll = 0;
 	}
 	
+	var rScroll = Math.round(scroll);
+	
 	// draw bg
 	for (var w = -1; w < c.width/bg.width; w++)
 	{
 		for (var h = -1; h < c.height/bg.height; h++)
 		{
-			ctx.drawImage(bg, w * bg.width + Math.round(scroll), h * bg . height + Math.round(scroll));
+			ctx.drawImage(bg, w * bg.width + rScroll, h * bg . height + rScroll);
 		}
 	}
 }
@@ -41,8 +43,8 @@ window.onresize = function()
 function resizeCanvas()
 {
 	// resize canvas
-	c.width = window.innerWidth / 4;
-	c.height = window.innerHeight / 4;
+	c.width = window.innerWidth / 6;
+	c.height = window.innerHeight / 6;
 }
 
 // initialize bg
@@ -50,4 +52,11 @@ function initBg()
 {
 	resizeCanvas();
 	setInterval(update);
+}
+
+// disable right click
+c.oncontextmenu = function(e)
+{
+	e.preventDefault();
+	e.stopPropagation();
 }
