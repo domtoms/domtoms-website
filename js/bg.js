@@ -3,16 +3,17 @@ var c = document.getElementById("bg");
 var ctx = c.getContext("2d");
 
 // images
-var bg = new Image(); bg.src = "bg.png"
-var miku = new Image(); miku.src = "miku.png";
-var leek = new Image(); leek.src = "leek.png";
-var bomb = new Image(); bomb.src = "bomb.png";
-var boom = new Image(); boom.src = "boom.png";
+var bg = new Image(); bg.src = "img/bg.png"
+var miku = new Image(); miku.src = "img/miku.png";
+var leek = new Image(); leek.src = "img/leek.png";
+var bomb = new Image(); bomb.src = "img/bomb.png";
+var boom = new Image(); boom.src = "img/boom.png";
+var touch = new Image(); touch.src = "img/touch.png";
 
 // audio
-var boomsfx = new Audio("boom.wav");
-var leeksfx = new Audio("leek.wav");
-var playsfx = new Audio("play.wav");
+var boomsfx = new Audio("sfx/boom.wav");
+var leeksfx = new Audio("sfx/leek.wav");
+var playsfx = new Audio("sfx/play.wav");
 
 // global variables
 var scroll = 0;
@@ -27,6 +28,7 @@ var sprites = [];
 var drawChar = 1;
 var score = 0;
 var hiScore = 0;
+var mobile = 0;
 
 // objects and classes
 var player =
@@ -64,6 +66,35 @@ function update()
 		{
 			ctx.drawImage(bg, w * bg.width + rScroll, h * bg . height + rScroll);
 		}
+	}
+	
+	// touch buttons
+	if (mobile)
+	{
+		ctx.globalAlpha = 0.4;
+		
+		// up button
+		ctx.drawImage(touch, 32, c.height - 64);
+		
+		// right button
+		ctx.translate(64, c.height - 48);
+		ctx.rotate(90 * Math.PI / 180);
+		ctx.drawImage(touch, 0, 0);
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+		
+		// down button
+		ctx.translate(48, c.height - 16);
+		ctx.rotate(180 * Math.PI / 180);
+		ctx.drawImage(touch, 0, 0);
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+		
+		// left button
+		ctx.translate(16, c.height - 32);
+		ctx.rotate(270 * Math.PI / 180);
+		ctx.drawImage(touch, 0, 0);
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+		
+		ctx.globalAlpha = 1;
 	}
 	
 	// game
@@ -263,7 +294,13 @@ function animFrame()
 // initialize bg
 function initBg()
 {
+	// set canvas size
 	resizeCanvas();
+	
+	// check if device has touchscreen
+	if ("ontouchstart" in window) mobile = true;
+	
+	// begin loops
 	setInterval(update, 1000/60);
 	setInterval(animFrame, 1000/4);
 }
