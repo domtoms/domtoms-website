@@ -1,19 +1,19 @@
 // get canvas
-var c = document.getElementById("bg");
-var ctx = c.getContext("2d");
+const c = document.getElementById("bg");
+const ctx = c.getContext("2d");
 
 // images
-var bg = new Image(); bg.src = "img/bg.png"
-var miku = new Image(); miku.src = "img/miku.png";
-var leek = new Image(); leek.src = "img/leek.png";
-var bomb = new Image(); bomb.src = "img/bomb.png";
-var boom = new Image(); boom.src = "img/boom.png";
-var touch = new Image(); touch.src = "img/touch.png";
+const bg = new Image(); bg.src = "img/bg.png"
+const miku = new Image(); miku.src = "img/miku.png";
+const leek = new Image(); leek.src = "img/leek.png";
+const bomb = new Image(); bomb.src = "img/bomb.png";
+const boom = new Image(); boom.src = "img/boom.png";
+const touch = new Image(); touch.src = "img/touch.png";
 
 // audio
-var boomsfx = new Audio("sfx/boom.wav");
-var leeksfx = new Audio("sfx/leek.wav");
-var playsfx = new Audio("sfx/play.wav");
+const boomsfx = new Audio("sfx/boom.wav");
+const leeksfx = new Audio("sfx/leek.wav");
+const playsfx = new Audio("sfx/play.wav");
 
 // global variables
 var scroll = 0;
@@ -29,6 +29,14 @@ var drawChar = 1;
 var score = 0;
 var hiScore = 0;
 var mobile = 0;
+
+// touchscreen buttons
+const buttons = [
+	{x: 22, y: 52},
+	{x: 36, y: 38},
+	{x: 08, y: 38},
+	{x: 22, y: 24},
+];
 
 // objects and classes
 var player =
@@ -176,6 +184,7 @@ function update()
 				ctx.fillText("Hi-Score: " + hiScore, 10, 28);
 				
 				// touch buttons
+				/*
 				if (mobile)
 				{
 					ctx.globalAlpha = 0.4;
@@ -201,8 +210,14 @@ function update()
 					ctx.drawImage(touch, 0, 0);
 					ctx.setTransform(1, 0, 0, 1, 0, 0);
 					
+					for (var i = 0; i < buttons.length; i++)
+					{
+						ctx.fillRect(buttons[i].x, c.height - buttons[i].y, 16, 16);
+					}
+					
 					ctx.globalAlpha = 1;
 				}
+				*/
 			}
 			
 			else if (dead)
