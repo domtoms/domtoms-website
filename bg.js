@@ -25,6 +25,8 @@ var dead = 0;
 var deathFrame = 0;
 var sprites = [];
 var drawChar = 1;
+var score = 0;
+var hiScore = 0;
 
 // objects and classes
 var player =
@@ -152,6 +154,7 @@ function update()
 						// leek
 						else
 						{
+							score++;
 							leeksfx.play();
 							delArr.push(i);
 						}
@@ -163,6 +166,12 @@ function update()
 				{
 					sprites.splice(delArr[i], 1);
 				}
+				
+				// score text
+				ctx.fillStyle = "white";
+				ctx.font = "10px Roboto";
+				ctx.fillText("Score: " + score, 10, 18);
+				ctx.fillText("Hi-Score: " + hiScore, 10, 28);
 			}
 			
 			else if (dead)
@@ -204,6 +213,7 @@ function gameInit()
 	dead = 0;
 	deathFrame = 0;
 	drawChar = 1;
+	score = 0;
 	
 	// play sound
 	playsfx.play();
@@ -224,6 +234,9 @@ function death()
 	// reset variables
 	init = 0;
 	game = 0;
+	
+	// update high score
+	if (score > hiScore) hiScore = score;
 }
 
 // on window resize
@@ -261,14 +274,21 @@ function spawnItem()
 	// return if not in game
 	if (!game) return; 
 	
-	// pick sprite
-	var sprite;
-	if (Math.round(Math.random())) sprite = leek;
-	else sprite = bomb;
+	// pick how many items to spawn
+	var items = Math.ceil(Math.random() * 3);
 	
-	// add to array
-	var item = new pickup(Math.random() * c.width - (sprite.width/2), -Math.random() * 100, sprite);
-	var timeout = (Math.random() * 2) + 1;
+	for (var i = 0; i < items; i++)
+	{		
+		// pick sprite
+		var sprite;
+		if (Math.round(Math.random())) sprite = leek;
+		else sprite = bomb;
+		
+		// add to array
+		var item = new pickup(Math.random() * c.width - (sprite.width/2), -Math.random() * 300, sprite);
+		var timeout = (Math.random() * 2) + 1;
+	}
+	
 	setTimeout(spawnItem, 500 * timeout);
 }
 

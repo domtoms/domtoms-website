@@ -79,6 +79,7 @@ a:active {color: #787878;}
 	left: 0px;
 	position: absolute;
 	margin: 0px;
+	font-smooth: never;
 }
 
 
