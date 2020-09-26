@@ -33,10 +33,10 @@ var mobile = 0;
 
 // touchscreen buttons
 const buttons = [
-	{x: 22, y: 52, key: 0},
-	{x: 36, y: 38, key: 1},
-	{x: 22, y: 24, key: 2},
-	{x: 08, y: 38, key: 3},
+	{x: 22, y: 52, key: 0, opacity: 0.4},
+	{x: 36, y: 38, key: 1, opacity: 0.4},
+	{x: 22, y: 24, key: 2, opacity: 0.4},
+	{x: 08, y: 38, key: 3, opacity: 0.4},
 ];
 
 var touchPos = {
@@ -131,9 +131,15 @@ function update()
 				// touch inputs
 				for (var i = 0; i < buttons.length; i++)
 				{
+					// reset opacity
+					buttons[i].opacity = 0.4;
+					
+					// on touch
 					if (touchPos.x > buttons[i].x && touchPos.x < buttons[i].x + touch.width && touchPos.y >
 					   (c.height - buttons[i].y) && touchPos.y < (c.height - buttons[i].y) + touch.height)
 					{
+						buttons[i].opacity = 0.8;
+						
 						switch(buttons[i].key)
 						{
 							case 0: movY--; break;
@@ -207,25 +213,27 @@ function update()
 				
 				// touch buttons 
 				if (touchscreen && mobile)
-				{
-					ctx.globalAlpha = 0.4;
-					
+				{	
 					// up button
+					ctx.globalAlpha = buttons[0].opacity;
 					ctx.drawImage(touch, 22, c.height - 52);
 					
 					// right button
+					ctx.globalAlpha = buttons[1].opacity;
 					ctx.translate(52, c.height - 38);
 					ctx.rotate(90 * Math.PI / 180);
 					ctx.drawImage(touch, 0, 0);
 					ctx.setTransform(1, 0, 0, 1, 0, 0);
 					
 					// down button
+					ctx.globalAlpha = buttons[2].opacity;
 					ctx.translate(38, c.height - 8);
 					ctx.rotate(180 * Math.PI / 180);
 					ctx.drawImage(touch, 0, 0);
 					ctx.setTransform(1, 0, 0, 1, 0, 0);
 					
 					// left button
+					ctx.globalAlpha = buttons[3].opacity;
 					ctx.translate(8, c.height - 22);
 					ctx.rotate(270 * Math.PI / 180);
 					ctx.drawImage(touch, 0, 0);
@@ -343,7 +351,7 @@ function spawnItem()
 	if (!game) return; 
 	
 	// pick how many items to spawn
-	var items = Math.ceil(Math.random() * 3);
+	var items = Math.ceil(window.innerWidth / 500);
 	
 	for (var i = 0; i < items; i++)
 	{		
