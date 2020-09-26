@@ -33,10 +33,10 @@ var mobile = 0;
 
 // touchscreen buttons
 const buttons = [
-	{x: 22, y: 52, key: 0, opacity: 0.4},
-	{x: 36, y: 38, key: 1, opacity: 0.4},
-	{x: 22, y: 24, key: 2, opacity: 0.4},
-	{x: 08, y: 38, key: 3, opacity: 0.4},
+	{x: 22, y: 52, opacity: 0.4},
+	{x: 36, y: 38, opacity: 0.4},
+	{x: 22, y: 24, opacity: 0.4},
+	{x: 08, y: 38, opacity: 0.4},
 ];
 
 var touchPos = {
@@ -58,7 +58,20 @@ class pickup
 		this.x = x;
 		this.y = y;
 		this.img = img;
-		sprites.push(this);
+		this.add = 1;
+		
+		// check if overlap
+		for (var i = 0; i < sprites.length; i++)
+		{
+			if (this.x + this.img.width >  sprites[i].x && this.x < sprites[i].x + sprites[i].img.width &&
+				this.y + this.img.height > sprites[i].y && this.y < sprites[i].y + sprites[i].img.height)
+			{
+				this.add = 0;
+				break;
+			}
+		}
+		if (this.add) sprites.push(this);
+		
 	}
 }
 
@@ -140,7 +153,7 @@ function update()
 					{
 						buttons[i].opacity = 0.8;
 						
-						switch(buttons[i].key)
+						switch(i)
 						{
 							case 0: movY--; break;
 							case 1: movX++; break;
@@ -181,20 +194,20 @@ function update()
 					if (player.x + (miku.width/2)  > sprites[i].x && player.x < (sprites[i].x + sprites[i].img.width) &&
 						player.y + (miku.height/2) > sprites[i].y && player.y < (sprites[i].y + sprites[i].img.height))
 					{
-						// bomb
-						if (sprites[i].img == bomb)
-						{
-							boomsfx.play();
-							dead = 1;
-							setTimeout(animateExplosion, 1000/8);
-						}
-						
 						// leek
-						else
+						if (sprites[i].img == leek)
 						{
 							score++;
 							leeksfx.play();
 							delArr.push(i);
+						}
+						
+						// bomb
+						else
+						{
+							boomsfx.play();
+							dead = 1;
+							setTimeout(animateExplosion, 1000/8);
 						}
 					}
 				}
@@ -202,7 +215,7 @@ function update()
 				// delete pickups
 				for (var i = 0; i < delArr.length; i++)
 				{
-					sprites.splice(delArr[i], 1);
+					sprites.splice(delArr[i] - i, 1);
 				}
 				
 				// score text
