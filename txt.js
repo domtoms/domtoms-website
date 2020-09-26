@@ -4,17 +4,17 @@ const year = new Date().getFullYear();
 // list of subheadings
 const textItems =
 [
-	"retro anime enthusiast.",
-	"boarderline suicidal longboarder.",
-	"casual indie game developer.",
-	"computer science student.",
-	"massive fucking nerd.",
-	"caffine and nicotine addict.",
-	"former graphic designer wannabe.",
-	"Playstation 2 player in " + year + ".",
-	"bisexual, probably.",
-	"jobseeker, please hire me.",
-	"lover of brainfuck."
+	"retro anime enthusiast",
+	"boarderline suicidal longboarder",
+	"casual indie game developer",
+	"computer science student",
+	"massive fucking nerd",
+	"caffeine and nicotine addict",
+	"former graphic designer wannabe",
+	"Playstation 2 player in " + year,
+	"bisexual, probably",
+	"jobseeker, please hire me",
+	"brainfuck extraordinaire"
 ];
 
 // constants
@@ -64,7 +64,7 @@ function randomWord()
 	}
 
 	queue.push(rng);
-	text = " " + textItems[rng];
+	text = " " + textItems[rng] + ".";
 }
 
 // type characters
