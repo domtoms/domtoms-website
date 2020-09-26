@@ -9,6 +9,10 @@ var leek = new Image(); leek.src = "leek.png";
 var bomb = new Image(); bomb.src = "bomb.png";
 var boom = new Image(); boom.src = "boom.png";
 
+// audio
+var boomsfx = new Audio("boom.wav");
+var leeksfx = new Audio("leek.wav");
+
 // global variables
 var scroll = 0;
 var init = 0;
@@ -136,8 +140,7 @@ function update()
 						// bomb
 						if (sprites[i].img == bomb)
 						{
-							var audio = new Audio("boom.wav");
-							audio.play();
+							boomsfx.play();
 							dead = 1;
 							setTimeout(animateExplosion, 1000/8);
 						}
@@ -145,8 +148,7 @@ function update()
 						// leek
 						else
 						{
-							var audio = new Audio("leek.wav");
-							audio.play();
+							leeksfx.play();
 							delArr.push(i);
 						}
 					}
