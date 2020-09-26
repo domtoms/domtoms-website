@@ -1,10 +1,6 @@
 html
 {
 	height: 100vh;
-    border: solid;
-	border-width: 30px;
-	border-color: #787878;
-	box-sizing: border-box;
 	overflow: hidden;
 }
 
@@ -69,3 +65,46 @@ a:link {color: #787878;}
 a:visited {color: #787878;}
 a:hover {color: #787878;}
 a:active {color: #787878;}
+
+#bg
+{
+	position: absolute;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	margin: 0px;
+}
+
+
+#border
+{
+	height: 100vh;
+	width: 100vw;
+    border: solid;
+	border-width: 30px;
+	border-color: rgba(120, 120, 120, 0.5);
+	box-sizing: border-box;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	margin: 0px;
+}
+
+.visible
+{
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s linear;
+}
+
+.hidden
+{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+}

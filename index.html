@@ -12,6 +12,10 @@
 </head>
 <body>
 
+	<!-- page background -->
+	<div id = "border"></div>
+	<canvas id = "bg"></canvas>
+
 	<!-- page header -->
 	<div id = headerText>
 		<div style = "text-align: center"><img src = "portrait.jpg" id = "portrait"></div>
@@ -29,7 +33,16 @@
 	</div>
 	
 	<!-- scripts -->
-	<script src = "scrollingText.js"></script>
+	<script src = "txt.js"></script>
+	<script src = "bg.js"></script>
+	<script>
+		// run on page load
+		window.onload = function()
+		{
+			initText();
+			initBg();
+		}
+	</script>
 	
 </body>
 </html>
