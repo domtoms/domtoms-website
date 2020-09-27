@@ -10,11 +10,6 @@ const bomb = new Image(); bomb.src = "img/bomb.png";
 const boom = new Image(); boom.src = "img/boom.png";
 const touch = new Image(); touch.src = "img/touch.png";
 
-// audio
-const boomsfx = new Audio("sfx/boom.wav");
-const leeksfx = new Audio("sfx/leek.wav");
-const playsfx = new Audio("sfx/play.wav");
-
 // global variables
 var scroll = 0;
 var init = 0;
@@ -30,6 +25,7 @@ var score = 0;
 var hiScore = 0;
 var touchscreen = 0;
 var mobile = 0;
+var itemSpeed = 1;
 
 // touchscreen buttons
 const buttons = [
@@ -185,7 +181,7 @@ function update()
 				{
 					// draw pickups
 					ctx.drawImage(sprites[i].img, Math.round(sprites[i].x), Math.round(sprites[i].y));
-					sprites[i].y++;
+					sprites[i].y += itemSpeed;
 					
 					// cleanup offscreen sprites
 					if (sprites[i].y > c.height) delArr.push(i);
@@ -198,6 +194,9 @@ function update()
 						if (sprites[i].img == leek)
 						{
 							score++;
+							if (itemSpeed < 2 && !(score % 5)) itemSpeed += 0.05;
+							console.log(itemSpeed);
+							var leeksfx = new Audio("sfx/leek.mp3");
 							leeksfx.play();
 							delArr.push(i);
 						}
@@ -205,6 +204,7 @@ function update()
 						// bomb
 						else
 						{
+							var boomsfx = new Audio("sfx/boom.mp3");
 							boomsfx.play();
 							dead = 1;
 							setTimeout(animateExplosion, 1000/8);
@@ -296,8 +296,10 @@ function gameInit()
 	deathFrame = 0;
 	drawChar = 1;
 	score = 0;
+	itemSpeed = 1;
 	
 	// play sound
+	var playsfx = new Audio("sfx/play.mp3");
 	playsfx.play();
 	
 	// set player starting pos
@@ -375,9 +377,10 @@ function spawnItem()
 		
 		// add to array
 		var item = new pickup(Math.random() * c.width - (sprite.width/2), -Math.random() * 300, sprite);
-		var timeout = (Math.random() * 2) + 1;
 	}
 	
+	// queue next spawn
+	var timeout = (Math.random() * 2) + 1;
 	setTimeout(spawnItem, 500 * timeout);
 }
 
