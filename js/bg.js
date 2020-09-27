@@ -10,6 +10,10 @@ const bomb = new Image(); bomb.src = "img/bomb.png";
 const boom = new Image(); boom.src = "img/boom.png";
 const touch = new Image(); touch.src = "img/touch.png";
 
+// audio
+const playsfx = new Audio("sfx/play.mp3");
+const boomsfx = new Audio("sfx/boom.mp3");
+
 // global variables
 var scroll = 0;
 var init = 0;
@@ -103,8 +107,8 @@ function update()
 				mov * (miku.height/2),
 				miku.width/2,
 				miku.height/2,
-				Math.round(player.x),
-				Math.round(player.y),
+				Math.floor(player.x),
+				Math.floor(player.y),
 				miku.width/2,
 				miku.height/2
 			);
@@ -180,7 +184,7 @@ function update()
 				for (var i = 0; i < sprites.length; i++)
 				{
 					// draw pickups
-					ctx.drawImage(sprites[i].img, Math.round(sprites[i].x), Math.round(sprites[i].y));
+					ctx.drawImage(sprites[i].img, Math.floor(sprites[i].x), Math.floor(sprites[i].y));
 					sprites[i].y += itemSpeed;
 					
 					// cleanup offscreen sprites
@@ -204,7 +208,6 @@ function update()
 						// bomb
 						else
 						{
-							var boomsfx = new Audio("sfx/boom.mp3");
 							boomsfx.play();
 							dead = 1;
 							setTimeout(animateExplosion, 1000/8);
@@ -264,8 +267,8 @@ function update()
 					0,
 					boom.width / 8,
 					boom.height,
-					Math.round(player.x + (miku.width / 4)  - (boom.width / 16)),
-					Math.round(player.y + (miku.height / 4) - (boom.height / 2)),
+					Math.floor(player.x + (miku.width / 4)  - (boom.width / 16)),
+					Math.floor(player.y + (miku.height / 4) - (boom.height / 2)),
 					boom.width / 8,
 					boom.height
 				);
@@ -299,7 +302,6 @@ function gameInit()
 	itemSpeed = 1;
 	
 	// play sound
-	var playsfx = new Audio("sfx/play.mp3");
 	playsfx.play();
 	
 	// set player starting pos
@@ -380,7 +382,7 @@ function spawnItem()
 	}
 	
 	// queue next spawn
-	var timeout = (Math.random() * 2) + 1;
+	const timeout = (Math.random() * 2) + 1;
 	setTimeout(spawnItem, 500 * timeout);
 }
 

@@ -60,12 +60,14 @@ h1
 {
 	font-size: 18px;
 	color: #787878;
+	/* color: #9b9b9b; */
 }
 
-a:link {color: #787878;}
-a:visited {color: #787878;}
-a:hover {color: #787878;}
-a:active {color: #787878;}
+a:link, a:visited, a:hover, a:active
+{
+	color: #787878;
+	/* color: #9b9b9b; */
+}
 
 #bg
 {
