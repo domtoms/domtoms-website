@@ -13,6 +13,7 @@ const touch = new Image(); touch.src = "img/touch.png";
 // audio
 const playsfx = new Audio("sfx/play.mp3");
 const boomsfx = new Audio("sfx/boom.mp3");
+const speedupsfx = new Audio("sfx/speedup.mp3");
 
 // global variables
 var scroll = 0;
@@ -55,6 +56,7 @@ class pickup
 {
 	constructor(x, y, img)
 	{
+		// sprite variables
 		this.x = x;
 		this.y = y;
 		this.img = img;
@@ -197,17 +199,31 @@ function update()
 						// leek
 						if (sprites[i].img == leek)
 						{
+							// increase score
 							score++;
-							if (itemSpeed < 3 && !(score % 25)) itemSpeed += 0.5;
+							
+							// speed up if score is multiple of 25
+							if (itemSpeed < 3 && !(score % 25))
+							{
+								speedupsfx.play();
+								itemSpeed += 0.5;
+							}
+							
+							// play sound effect
 							var leeksfx = new Audio("sfx/leek.mp3");
 							leeksfx.play();
+							
+							// delete leek sprite
 							delArr.push(i);
 						}
 						
 						// bomb
 						else
 						{
+							// play death sound effect
 							boomsfx.play();
+							
+							// kill player
 							dead = 1;
 							setTimeout(animateExplosion, 1000/8);
 						}
@@ -260,6 +276,7 @@ function update()
 			
 			else if (dead)
 			{
+				// draw explosion sprite
 				ctx.drawImage(
 					boom,
 					deathFrame * (boom.width / 8),
@@ -429,6 +446,7 @@ if ("ontouchstart" in window)
 {
 	ontouchstart = function(e)
 	{	
+		// update touch position variables
 		touchPos.x = e.touches[0].clientX / (window.innerWidth / c.width);
 		touchPos.y = e.touches[0].clientY / (window.innerHeight / c.height);
 	}
@@ -438,6 +456,7 @@ if ("ontouchend" in window)
 {
 	ontouchend = function(e)
 	{
+		// update touch position variables
 		touchPos.x = undefined;
 		touchPos.y = undefined;
 	}
