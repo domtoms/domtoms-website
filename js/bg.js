@@ -198,8 +198,7 @@ function update()
 						if (sprites[i].img == leek)
 						{
 							score++;
-							if (itemSpeed < 2 && !(score % 5)) itemSpeed += 0.05;
-							console.log(itemSpeed);
+							if (itemSpeed < 3 && !(score % 25)) itemSpeed += 0.5;
 							var leeksfx = new Audio("sfx/leek.mp3");
 							leeksfx.play();
 							delArr.push(i);
@@ -382,8 +381,8 @@ function spawnItem()
 	}
 	
 	// queue next spawn
-	const timeout = (Math.random() * 2) + 1;
-	setTimeout(spawnItem, 500 * timeout);
+	var timeout = (Math.random() * 2) + 1;
+	setTimeout(spawnItem, (500 - (itemSpeed * 150)) + (timeout * 100));
 }
 
 function animateExplosion()
