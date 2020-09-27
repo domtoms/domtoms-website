@@ -11,6 +11,7 @@ const boom = new Image(); boom.src = "img/boom.png";
 const touch = new Image(); touch.src = "img/touch.png";
 
 // audio
+const leeksfx = new Audio("sfx/leek.mp3");
 const playsfx = new Audio("sfx/play.mp3");
 const boomsfx = new Audio("sfx/boom.mp3");
 const speedupsfx = new Audio("sfx/speedup.mp3");
@@ -210,7 +211,7 @@ function update()
 							}
 							
 							// play sound effect
-							var leeksfx = new Audio("sfx/leek.mp3");
+							const leeksfx = new Audio("sfx/leek.mp3");
 							leeksfx.play();
 							
 							// delete leek sprite
