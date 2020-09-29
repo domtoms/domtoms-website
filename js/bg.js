@@ -339,7 +339,11 @@ function death()
 	game = 0;
 	
 	// update high score
-	if (score > hiScore) hiScore = score;
+	if (score > hiScore)
+	{
+		localStorage.setItem("highscore", score);
+		hiScore = score;
+	}
 }
 
 // on window resize
@@ -366,6 +370,12 @@ function animFrame()
 // initialize bg
 function initBg()
 {
+	// get high score from local storage
+	if (localStorage.getItem("highscore") != null)
+	{
+		hiScore = localStorage.getItem("highscore");
+	}
+	
 	// set canvas size
 	resizeCanvas();
 	
