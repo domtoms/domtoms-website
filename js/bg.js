@@ -100,7 +100,7 @@ function update()
 	
 	// game
 	if (init)
-	{
+	{	
 		if (drawChar)
 		{
 			// draw player
@@ -134,6 +134,12 @@ function update()
 		{
 			if (!dead)
 			{
+				// press esc to quit game
+				if (keys.Escape)
+				{
+					gameOver();
+				}
+				
 				// movement variables
 				movX = 0;
 				movY = 0;
@@ -219,15 +225,7 @@ function update()
 						}
 						
 						// bomb
-						else
-						{
-							// play death sound effect
-							boomsfx.play();
-							
-							// kill player
-							dead = 1;
-							setTimeout(animateExplosion, 1000/8);
-						}
+						else gameOver();
 					}
 				}
 				
@@ -430,6 +428,16 @@ function animateExplosion()
 	
 	// continue animation
 	deathFrame++;
+	setTimeout(animateExplosion, 1000/8);
+}
+
+function gameOver()
+{
+	// play death sound effect
+	boomsfx.play();
+	
+	// kill player
+	dead = 1;
 	setTimeout(animateExplosion, 1000/8);
 }
 
