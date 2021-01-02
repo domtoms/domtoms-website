@@ -14,7 +14,7 @@ const textItems =
 	"Playstation 2 player in " + year,
 	"bisexual, probably",
 	"jobseeker, please hire me",
-	"brainfuck extraordinaire"
+	"brainfuck extraordinaire",
 	"intolerable GNU/Linux fanboy"
 ];
 
