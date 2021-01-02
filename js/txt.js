@@ -15,6 +15,7 @@ const textItems =
 	"bisexual, probably",
 	"jobseeker, please hire me",
 	"brainfuck extraordinaire"
+	"intolerable GNU/Linux fanboy"
 ];
 
 // constants
