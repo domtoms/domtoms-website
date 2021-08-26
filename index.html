@@ -1,51 +1,28 @@
 <!doctype html>
 <html>
 <head>
-
-	<!-- head stuff -->
-    <title>Dominic Schmidt-Toms</title>
-    <link rel = "shortcut icon" href = "img/meek.png" type = "image/x-icon"/>
-	<link href = "https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel = "stylesheet">
-	<meta charset = "utf-8">
+	<!-- site data -->
+	<title>dominic schmidt-toms</title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel = "stylesheet" href = "stylesheet.css" type = "text/css">
-	
+	<link rel="stylesheet" href="main.css">
+	<link rel ="shortcut icon" href="meek.png" type="image/x-icon"/>
+	<script src="randomtext.js"></script>
 </head>
 <body>
-
-	<!-- page background -->
-	<div id = "border"></div>
-	<canvas id = "bg"></canvas>
-
-	<!-- page header -->
-	<div id = "headerText">
-		<div style = "text-align: center">
-			<img src = "img/portrait.jpg" id = "portrait" onclick = "gameInit();">
-		</div>
-		<h1 id = "header">Dominic Schmidt-Toms</h1>
-		<p id = "subheading"></p> 
+	<!-- title and cool animated text widget -->
+	<div id="title">
+		<span id="name">dominic schmidt-toms</span>
+		<br>
+		<span>is a</span>
+		<span id="typewriter">command line wizard</span> 
 	</div>
-	
-	<!-- page footer -->
-	<div id = "footer">
-		<p id = "footertext">
-		<a href="https://github.com/dominictoms/" target="_blank">GitHub</a> •
-		<a href="https://www.facebook.com/domschmidttoms/" target="_blank">Facebook</a> •
-		<a href="https://www.snapchat.com/add/schmidtoms" target="_blank">Snapchat</a>
-		</p>
+
+	<!-- links to all my stuff -->
+	<div id="links">
+		<a href="https://github.com/dominictoms/" target="_blank">github</a>
+		<br>
+		<a href="https://twitter.com/dominictoms69/" target="_blank">twitter</a>
 	</div>
-	
-	<!-- scripts -->
-	<script src = "js/txt.js"></script>
-	<script src = "js/bg.js"></script>
-	<script>
-		// run on page load
-		window.onload = function()
-		{
-			initText();
-			initBg();
-		}
-	</script>
-	
 </body>
 </html>

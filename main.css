@@ -1,0 +1,119 @@
+/* roboto mono */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+
+html, body
+{
+	/* black background */
+	background-color: #000;
+
+	/* global font */
+	color: #fff;
+	font-family: "Roboto Mono", monospace;
+	font-size: 28px;
+
+	/* no margin */
+	margin: 0;
+}
+
+a:link, a:visited
+{
+	/* links stay white */
+	color: #fff;
+}
+
+::selection
+{
+	/* invert selection */
+	background: #fff;
+	color: #000;
+}
+
+#title, #links
+{
+	/* textboxes */
+	max-width: max-content;
+	margin: 60px;
+}
+
+#name
+{
+	/* make my name big */
+	display: inline-block;
+	font-weight: bold;
+	font-size: 36px;
+}
+
+#links
+{
+	/* lock links to the right */
+	position: fixed;
+	text-align: right;
+	bottom: 0;
+	right: 0;
+}
+
+/* cool animated text */
+#typewriter
+{
+	/* cursor */
+	text-overflow: "█";
+
+	/* crop text */
+	max-width: max-content;
+	overflow: hidden;
+	white-space: nowrap;
+	display: inline-block;
+	vertical-align: top;
+
+	/* animation */
+	animation-name: typing;
+	animation-duration: 6s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+/* blinking cursor */
+#typewriter::after
+{
+	/* cursor */
+	content: "█";
+
+	/* animation */
+	animation-name: cursor;
+	animation-duration: .7s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+/* typing animation */
+@keyframes typing
+{
+	0%
+	{
+		width: 0;
+	}
+
+	20%, 90%
+	{
+		width: 100%;
+	}
+
+	100%
+	{
+		width: 0;
+	}
+}
+
+/* blinking cursor animation */
+@keyframes cursor
+{
+	0%, 49%
+	{
+		opacity: 0%;
+	}
+
+	50%
+	{
+		opacity: 100%;
+	}
+}
