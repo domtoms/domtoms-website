@@ -91,7 +91,7 @@ a:link, a:visited
 
 	/* animation */
 	animation-name: typing;
-	animation-duration: 6s;
+	animation-duration: 0s;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 }
