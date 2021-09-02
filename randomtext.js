@@ -1,3 +1,9 @@
+// function for calculating age
+function calculateAge(dob)
+{ 
+	return new Date(Date.now() - dob.getTime()).getFullYear() - 1970;
+}
+
 // function for getting new phrase
 function getPhrase(phrases)
 {
@@ -35,15 +41,17 @@ window.onload = () =>
 	// array of text to display
 	const phrases =
 	[
+		calculateAge(new Date(2000, 11, 3)) + " year old from cambridge",
 		"brainfuck extrodonaire",
 		"caffeine and nicotine addict",
 		"command line wizard",
 		"computer science student",
+		"dedicated vegetarian",
 		"devoted unix fanboy",
-		"downhill longboarder",
 		"part-time game developer",
 		"playstation 2 player in " + new Date().getFullYear(),
 		"retro anime enthusiast",
+		"skilled downhill longboarder",
 	];
 
 	// array to store history
@@ -55,7 +63,7 @@ window.onload = () =>
 	// variable to store text element
 	let text = document.getElementById("typewriter");
 
-	// enable animation
+	// enable animation (so it won't play without js)
 	text.style.animationDuration = "6s";
 
 	// set first text value
