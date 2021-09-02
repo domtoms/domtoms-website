@@ -55,6 +55,9 @@ window.onload = () =>
 	// variable to store text element
 	let text = document.getElementById("typewriter");
 
+	// enable animation
+	text.style.animationDuration = "6s";
+
 	// set first text value
 	updateText(text, phrases, history, historyLen);
 

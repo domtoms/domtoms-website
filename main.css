@@ -15,6 +15,40 @@ html, body
 	margin: 0;
 }
 
+footer
+{
+	/* lock to the bottom */
+	position: fixed;
+}
+
+.links
+{
+	/* lock to the bottom right */
+	text-align: right;
+	bottom: 0;
+	right: 0;
+	margin: 48px;
+
+}
+
+.flexgrid
+{
+	/* make it a grid */
+	display: flex;
+	flex-wrap: wrap;
+
+	/* text styling */
+	text-align: center;
+	margin: 48px;
+}
+
+.gridrow
+{
+	/* add some flexability */
+	flex: 1;
+	min-width: 500px;
+}
+
 a:link, a:visited
 {
 	/* links stay white */
@@ -28,7 +62,7 @@ a:link, a:visited
 	color: #000;
 }
 
-#title, #links
+#title
 {
 	/* textboxes */
 	max-width: max-content;
@@ -38,18 +72,8 @@ a:link, a:visited
 #name
 {
 	/* make my name big */
-	display: inline-block;
 	font-weight: bold;
 	font-size: 36px;
-}
-
-#links
-{
-	/* lock links to the right */
-	position: fixed;
-	text-align: right;
-	bottom: 0;
-	right: 0;
 }
 
 /* cool animated text */
