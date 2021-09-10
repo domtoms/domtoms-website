@@ -1,0 +1,5 @@
+/* only play once if no js */
+#typewriter
+{
+	animation-iteration-count: .2;
+}

@@ -63,11 +63,14 @@ window.onload = () =>
 	// variable to store text element
 	let text = document.getElementById("typewriter");
 
-	// enable animation (so it won't play without js)
-	text.style.animationDuration = "6s";
-
 	// set first text value
 	updateText(text, phrases, history, historyLen);
+
+	// disable animation if can't detect animation end
+	if (text.onanimationiteration === undefined)
+	{
+		text.style.animationDuration = "0s";
+	}
 
 	// run on animation loop
 	text.onanimationiteration = (anim) =>

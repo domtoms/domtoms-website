@@ -15,12 +15,6 @@ html, body
 	margin: 0;
 }
 
-footer
-{
-	/* lock to the bottom */
-	position: fixed;
-}
-
 .links
 {
 	/* lock to the bottom right */
@@ -55,7 +49,7 @@ a:link, a:visited
 	color: #fff;
 }
 
-::selection
+:selection
 {
 	/* invert selection */
 	background: #fff;
@@ -76,28 +70,8 @@ a:link, a:visited
 	font-size: 36px;
 }
 
-/* cool animated text */
-#typewriter
-{
-	/* cursor */
-	text-overflow: "█";
-
-	/* crop text */
-	max-width: max-content;
-	overflow: hidden;
-	white-space: nowrap;
-	display: inline-block;
-	vertical-align: top;
-
-	/* animation */
-	animation-name: typing;
-	animation-duration: 0s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-}
-
 /* blinking cursor */
-#typewriter::after
+#typewriter:after
 {
 	/* cursor */
 	content: "█";
@@ -107,25 +81,6 @@ a:link, a:visited
 	animation-duration: .7s;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
-}
-
-/* typing animation */
-@keyframes typing
-{
-	0%
-	{
-		width: 0;
-	}
-
-	20%, 90%
-	{
-		width: 100%;
-	}
-
-	100%
-	{
-		width: 0;
-	}
 }
 
 /* blinking cursor animation */
@@ -140,4 +95,43 @@ a:link, a:visited
 	{
 		opacity: 100%;
 	}
+}
+
+/* cool animated text */
+#typewriter
+{
+    /* cursor */
+    text-overflow: "█";
+
+    /* crop text */
+    max-width: max-content;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: top;
+
+    /* animation */
+    animation-name: typing;
+    animation-duration: 6s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+/* typing animation */
+@keyframes typing
+{
+    0%  
+    {   
+        width: 0;
+    }   
+
+    20%, 90% 
+    {   
+        width: 100%;
+    }   
+
+    100%
+    {   
+        width: 0;
+    }   
 }
