@@ -78,6 +78,9 @@ a:link, a:visited
 	/* cursor */
 	content: "█";
 
+	/* hidden by default */
+	visibility: hidden;
+
 	/* animation */
 	animation-name: cursor;
 	animation-duration: .7s;
