@@ -66,10 +66,10 @@ window.onload = () =>
 	// set first text value
 	updateText(text, phrases, history, historyLen);
 
-	// disable animation if can't detect animation end
-	if (text.onanimationiteration === undefined)
+	// enable looping animation if end can be detected
+	if (text.onanimationiteration !== undefined)
 	{
-		text.style.animationDuration = "0s";
+		text.style.animationIterationCount = "infinite";
 	}
 
 	// run on animation loop

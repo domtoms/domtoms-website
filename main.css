@@ -88,12 +88,12 @@ a:link, a:visited
 {
 	0%, 49%
 	{
-		opacity: 0%;
+		visibility: hidden;
 	}
 
 	50%
 	{
-		opacity: 100%;
+		visibility: visible;
 	}
 }
 
@@ -113,7 +113,7 @@ a:link, a:visited
     /* animation */
     animation-name: typing;
     animation-duration: 6s; 
-    animation-iteration-count: infinite;
+    animation-iteration-count: .2;
     animation-timing-function: linear;
 }
 
