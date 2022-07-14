@@ -48,10 +48,10 @@ window.onload = () =>
 		"computer science student",
 		"dedicated vegetarian",
 		"devoted unix fanboy",
-		"part-time game developer",
+		"backend developer",
 		"playstation 2 player in " + new Date().getFullYear(),
 		"retro anime enthusiast",
-		"skilled downhill longboarder",
+		"downhill longboarder",
 	];
 
 	// array to store history
