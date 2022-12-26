@@ -43,7 +43,7 @@ window.onload = () =>
 	[
 		calculateAge(new Date(2000, 11, 3)) + " year old from cambridge",
 		"brainfuck extrodonaire",
-		"caffeine and nicotine addict",
+		"monster energy enjoyer",
 		"command line wizard",
 		"computer science student",
 		"dedicated vegetarian",
