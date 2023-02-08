@@ -23,7 +23,21 @@ html, body
 	right: 0;
 	margin: 0;
 	padding: 48px;
+	position: fixed;
+}
 
+.game
+{
+	/* lock to the bottom left */
+	text-align: left;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	padding: 48px;
+	position: fixed;
+	width: 60ch;
+	overflow: hidden;
+	font-size: 18px;
 }
 
 .flexgrid
