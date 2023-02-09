@@ -40,10 +40,11 @@ html, body
 	margin: 0;
 	padding: 48px;
 	position: fixed;
-	width: 60ch;
-	overflow: hidden; 
 	font-size: 18px;
 	white-space: nowrap;
+	width: 60ch;
+	overflow: hidden; 
+	padding-right: 0;
 }
 
 a:link, a:visited

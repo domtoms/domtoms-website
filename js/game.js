@@ -1,4 +1,4 @@
-/* define the sprites here  */
+/* sprites  */
 let char = [
 	'            ^__^',
 	'    _______/(oo)',
@@ -126,8 +126,17 @@ function draw()
 		}
 	}
 
-	/* update the score */
-	out += ground + '<br>' + ' score: ' + score + '<br>' + ' high score: ' + high;
+
+	/* draw ground */
+	out += ground + '<br>'; 
+
+	/* draw scoreboard */
+	scoretxt = 'score: ' + score;
+	hightxt = 'high score: ' + high;
+	let gap = len - scoretxt.length - hightxt.length - 2;
+
+    out += ' ' + scoretxt + ' '.repeat(gap) + hightxt;
+
 	return out;
 }
 
@@ -224,7 +233,6 @@ function worldgen()
 	for (let i = 0; i < len; i++)
 	{
 		ground += stones[Math.floor(Math.random() * stones.length)];
-		ground = stones[Math.floor(Math.random() * stones.length)].repeat(len);
 	}
 }
 
