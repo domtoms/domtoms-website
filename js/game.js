@@ -16,18 +16,20 @@ let obstacle = [
 let stones = ['=', '-'];
 let ground = '';
 
+/* global variables */
 let len = 60;      /* length of road */
 let dist = 100;    /* distance from obstacle */
 let airtime = 0;   /* time player has left airborne */
 let dead = false;  /* is the player dead? */
 let score = 0;     /* total points earned by player */
+let high;          /* players high score */
 let speed = 1;     /* speed of gameplay */
 let tic = 0;       /* tic counter used for leg animation */
 let fps = 30;      /* how many frames to render a second */
 let frame = 0;     /* frame of leg animation */
 let awoke = false; /* has the game been started? */
-
-let element;
+let element;       /* game canvas */
+let container;     /* div containing game canvas */
 
 function draw()
 {
@@ -51,6 +53,13 @@ function draw()
 			if (dist < char[0].length - speed)
 			{
 				airtime = 1;
+			}
+
+			/* update high score */
+			if (score > high)
+			{
+				high = score;
+				localStorage.setItem('high', score);
 			}
 
 			dead = true;
@@ -113,12 +122,12 @@ function draw()
 				cutoff = Math.abs(dist);
 			}
 
-			out += ' '.repeat(space);
-			out += obstacle[i].substr(cutoff, obstacle[i].length) + '<br>';
+			out += ' '.repeat(space) + obstacle[i].substr(cutoff, obstacle[i].length) + '<br>';
 		}
 	}
 
-	out += ground + '<br>' + ' score: ' + score;
+	/* update the score */
+	out += ground + '<br>' + ' score: ' + score + '<br>' + ' high score: ' + high;
 	return out;
 }
 
@@ -183,38 +192,109 @@ function awake()
 
 	awoke = true;
 
+	/* set high score */
+	high = localStorage.getItem('high') || 0;
+
 	/* get game canvas */
 	element = document.getElementById('game');
 
-	/* generate the initial ground texture */
-	for (let i = 0; i < len; i++)
+	/* generate ground texture */
+	worldgen();
+
+	/* handle mobile device */
+	//if (mobile())
+	if (true)
 	{
-		ground += stones[Math.floor(Math.random() * stones.length)];
+		container = document.getElementById('container');
+
+		/* rotate and center the game container */
+		container.style.webkitTransform = 'rotate(90deg)'; 
+		container.style.mozTransform    = 'rotate(90deg)'; 
+		container.style.msTransform     = 'rotate(90deg)'; 
+		container.style.oTransform      = 'rotate(90deg)'; 
+		container.style.transform       = 'rotate(90deg)'; 
+		container.style.margin          = 'auto';
+		container.style.position        = 'unset';
+		container.style.marginTop      = '200px';
+
+		/* hide the rest of the page */
+		let hide = ['title', 'links'];
+		for (let i = 0; i < hide.length; i++)
+		{
+			document.getElementById(hide[i]).style.display = 'none';
+		}
 	}
 
 	/* begin the update loop */
 	setInterval(update, 1000/fps);
 }
 
-onkeyup = function(e)
+function worldgen()
 {
-	if (e.code == "Space" && !dead)
+	/* generate the initial ground texture */
+	for (let i = 0; i < len; i++)
 	{
-		/* wake game with spacebar */
-		if (!awoke)
-		{
-			awake();
-		}
-
-		/* otherwise jump with space */
-		else
-		{
-			if (airtime <= 0)
-			{
-				airtime = 30;
-			}
-		}
+		ground += stones[Math.floor(Math.random() * stones.length)];
+		ground = stones[Math.floor(Math.random() * stones.length)].repeat(len);
 	}
 }
 
-//awake();
+function reset()
+{
+	/* regenerate ground texture */
+	worldgen();
+
+	/* reset game variables */
+	speed = 1;
+	score = 0;
+	dist = 100;
+	airtime = 0;
+	dead = false;
+
+	/* reset sprite */	
+	char[1] = char[1].substring(0, 13) + 'oo' + char[1].substring(13 + 2);
+	char[3] = char[3].substring(0, 14) + ' ' + char[3].substring(14 + 1);
+}
+
+function input()
+{
+	/* wake game */
+	if (!awoke)
+	{
+		awake();
+		return;
+	}
+
+	/* jump if not dead */
+	if (!dead)
+	{
+		if (airtime <= 0)
+		{
+			airtime = 30;
+		}
+	}
+
+	/* reset game if dead */
+	else
+	{
+		reset();
+	}
+}
+
+function mobile()
+{
+	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+onkeyup = function(e)
+{
+	if (e.code == "Space")
+	{
+		input();
+	}
+}
+
+ontouchstart = function(e)
+{
+	input();
+}

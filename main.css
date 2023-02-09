@@ -36,8 +36,9 @@ html, body
 	padding: 48px;
 	position: fixed;
 	width: 60ch;
-	overflow: hidden;
+	overflow: hidden; 
 	font-size: 18px;
+	white-space: nowrap;
 }
 
 .flexgrid
