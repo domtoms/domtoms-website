@@ -26,7 +26,12 @@ html, body
 	position: fixed;
 }
 
-.game
+.hover
+{
+	cursor: pointer;
+}
+
+.container
 {
 	/* lock to the bottom left */
 	text-align: left;
@@ -39,24 +44,6 @@ html, body
 	overflow: hidden; 
 	font-size: 18px;
 	white-space: nowrap;
-}
-
-.flexgrid
-{
-	/* make it a grid */
-	display: flex;
-	flex-wrap: wrap;
-
-	/* text styling */
-	text-align: center;
-	margin: 0;
-}
-
-.gridrow
-{
-	/* add some flexability */
-	flex: 1;
-	min-width: 500px;
 }
 
 a:link, a:visited

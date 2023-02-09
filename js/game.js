@@ -201,12 +201,18 @@ function awake()
 	/* generate ground texture */
 	worldgen();
 
-	/* handle mobile device */
-	if (mobile())
-	{
-		/* hide the links  */
-		document.getElementById('links').style.display = 'none';
-	}
+	/* update css to dynamically hide links */
+	let style = document.createElement('style');
+	style.innerHTML = `
+		@media (orientation: portrait)
+		{
+			.links
+			{
+				display: none;
+			}
+		}
+	`;
+	document.head.appendChild(style);
 
 	/* begin the update loop */
 	setInterval(update, 1000/fps);
@@ -262,11 +268,6 @@ function input()
 	{
 		reset();
 	}
-}
-
-function mobile()
-{
-	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
 onkeyup = function(e)
