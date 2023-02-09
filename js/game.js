@@ -202,27 +202,10 @@ function awake()
 	worldgen();
 
 	/* handle mobile device */
-	//if (mobile())
-	if (true)
+	if (mobile())
 	{
-		container = document.getElementById('container');
-
-		/* rotate and center the game container */
-		container.style.webkitTransform = 'rotate(90deg)'; 
-		container.style.mozTransform    = 'rotate(90deg)'; 
-		container.style.msTransform     = 'rotate(90deg)'; 
-		container.style.oTransform      = 'rotate(90deg)'; 
-		container.style.transform       = 'rotate(90deg)'; 
-		container.style.margin          = 'auto';
-		container.style.position        = 'unset';
-		container.style.marginTop      = '200px';
-
-		/* hide the rest of the page */
-		let hide = ['title', 'links'];
-		for (let i = 0; i < hide.length; i++)
-		{
-			document.getElementById(hide[i]).style.display = 'none';
-		}
+		/* hide the links  */
+		document.getElementById('links').style.display = 'none';
 	}
 
 	/* begin the update loop */
