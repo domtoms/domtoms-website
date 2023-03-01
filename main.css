@@ -110,6 +110,16 @@ html, body
 /* shrink game in mobile landscape */
 @media (pointer:none), (pointer:coarse) and (orientation: landscape)
 {
+	#title
+	{
+		padding: 0.75em; 
+	}
+
+	.links
+	{
+		padding: 0.75em;
+	}
+
 	.container
 	{
 		font-size: 0.4em;

@@ -17,20 +17,23 @@ let stones = ['=', '-'];
 let ground = '';
 
 /* global variables */
-let len = 60;      /* length of road */
-let dist = 100;    /* distance from obstacle */
-let airtime = 0;   /* time player has left airborne */
-let dead = false;  /* is the player dead? */
-let score = 0;     /* total points earned by player */
-let high;          /* players high score */
-let speed = 1;     /* speed of gameplay */
-let tic = 0;       /* tic counter used for leg animation */
-let fps = 30;      /* how many frames to render a second */
-let frame = 0;     /* frame of leg animation */
-let awoke = false; /* has the game been started? */
-let element;       /* game canvas */
-let container;     /* div containing game canvas */
-let interval;      /* stores the game update interval */
+let len = 60;        /* length of road */
+let dist = 100;      /* distance from obstacle */
+let airtime = 0;     /* time player has left airborne */
+let dead = false;    /* is the player dead? */
+let score = 0;       /* total points earned by player */
+let high;            /* players high score */
+let speed = 1;       /* speed of gameplay */
+let tic = 0;         /* tic counter used for leg animation */
+let fps = 30;        /* how many frames to render a second */
+let frame = 0;       /* frame of leg animation */
+let awoke = false;   /* has the game been started? */
+let element;         /* game canvas */
+let container;       /* div containing game canvas */
+let interval;        /* stores the game update interval */
+let bbtext = '';     /* text in the bottom middle of screen */
+let bbflash = false; /* is the billboard flashing? */
+let bbtime = 0;      /* time to display billboard for */
 
 function draw()
 {
@@ -62,6 +65,18 @@ function draw()
 				high = score;
 				localStorage.setItem('high', score);
 			}
+
+			/* list of all game over messages */
+			const gameovermsg = [
+				'try again :(',
+				'rest in peace',
+				'see you space cow'
+			];
+
+			/* update billboard */
+			bbtext = gameovermsg[Math.floor(Math.random() * gameovermsg.length)];
+			bbtime = 1;
+			bbflash = false;
 
 			dead = true;
 			clearInterval(interval);
@@ -155,11 +170,26 @@ function draw()
 	out += ground + '<br>'; 
 
 	/* draw scoreboard */
-	scoretxt = 'score: ' + score;
-	hightxt = 'high score: ' + high;
-	let gap = len - scoretxt.length - hightxt.length - 2;
+	let scoretxt = 'score: ' + score;
+	let hightxt = 'high score: ' + high;
+	let billboard = '';
 
-    out += ' ' + scoretxt + ' '.repeat(gap) + hightxt;
+	if (Math.floor(bbtime / 10) % 2 == 0 && bbtime > 0 & bbflash)
+	{
+		billboard = bbtext;
+	}
+
+	if (!bbflash && bbtime > 0)
+	{
+		billboard = bbtext;
+	}
+
+	let leftgap = len/2 - scoretxt.length - (Math.floor(billboard.length/2)) - 1;
+	let rightgap = len/2 - hightxt.length - (Math.ceil(billboard.length/2)) -1;
+
+	let bottom  = ' '.repeat(leftgap) + billboard + ' '.repeat(rightgap);
+
+    out += ' ' + scoretxt + bottom + hightxt;
 
 	return out;
 }
@@ -178,10 +208,14 @@ function update()
 		/* increase score for every frame alive */
 		score++;
 
-		/* speed up game every 1000 points */
-		if (speed <= 3)
+		if (bbtime > 0)
 		{
-			speed = Math.ceil(score / 1000);
+			bbtime--;
+		}
+
+		if (bbtime == 0)
+		{
+			billboard = '';
 		}
 
 		/* update and draw the ground */
@@ -200,7 +234,28 @@ function update()
 		/* reset distance when obstacle goes off screen */
 		if (dist <= -obstacle[0].length)
 		{
-			dist = len * 1.75 + Math.floor(Math.random() * 30);
+			let levelmult = 1;
+
+			/* speed up game every 1000 points */
+			if (speed <= 3 && speed != Math.ceil(score / 1000))
+			{
+				/* speed up! */
+				speed++;
+
+				/* double gap on speed increase */
+				levelmult = 2;
+
+				/* update billboard */
+				bbtext = 'level++';
+				bbtime = 90;
+				bbflash = true;
+			}
+
+			/* increase gap based on speed */
+			let speedmult = 1 + ((speed - 1) * 0.5);
+
+			/* reset obstacle distance */
+			dist = (len * 1.75 + Math.floor(Math.random() * 30)) * speedmult * levelmult;
 		}
 
 		/* update frame */
@@ -261,6 +316,9 @@ function reset()
 	dist = 100;
 	airtime = 0;
 	dead = false;
+	bbtext = '';
+	bbtime = 0;
+	bbflash = false;
 
 	/* reset sprite */	
 	char[1] = char[1].substring(0, 13) + 'oo' + char[1].substring(13 + 2);
