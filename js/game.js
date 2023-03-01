@@ -30,6 +30,7 @@ let frame = 0;     /* frame of leg animation */
 let awoke = false; /* has the game been started? */
 let element;       /* game canvas */
 let container;     /* div containing game canvas */
+let interval;      /* stores the game update interval */
 
 function draw()
 {
@@ -63,6 +64,7 @@ function draw()
 			}
 
 			dead = true;
+			clearInterval(interval);
 		}
 
 		/* don't do these things if dead and airborne */
@@ -87,6 +89,17 @@ function draw()
 	/* apply leg animation */
 	char[4] = char[4].substring(0, 3) + legs + char[4].substring(3 + 9);
 
+	/* is obstacle out of bounds? */
+	let oob = dist > len;
+
+	/* allow to seamlessly roll on canvas */
+	let range = obstacle[0].length;
+	let right = Math.abs(dist - len);
+	if (right < obstacle.length)
+	{
+		range = right;
+	}
+
 	/* iterate through character sprite line by line */
 	for (let i = 0; i < char.length; i++)
 	{
@@ -96,13 +109,18 @@ function draw()
 		/* add obstacle on same line if player isn't jumping */
 		if (i >= char.length - obstacle.length && airtime <= 0)
 		{
+			/* lock obstacle into player to avoid clipping */
 			let space = dist - char[i].length;
 			if (space <= 0)
 			{
 				space = 0;
 			}
 
-			out += ' '.repeat(space) + obstacle[i - char.length + obstacle.length];
+			/* draw obstacle if obstacle is in bounds */
+			if (!oob)
+			{
+				out += ' '.repeat(space) + obstacle[i - char.length + obstacle.length].substr(0, right);
+			}
 		}
 
 		out += '<br>';
@@ -114,15 +132,21 @@ function draw()
 		for (let i = 0; i < obstacle.length; i++)
 		{
 			/* allow to seamlessly roll off canvas */
-			space = dist;
-			cutoff = 0;
+			let space = dist;
+			let left = 0;
 			if (dist <= 0)
 			{
 				space = 0;
-				cutoff = Math.abs(dist);
+				left = Math.abs(dist);
 			}
 
-			out += ' '.repeat(space) + obstacle[i].substr(cutoff, obstacle[i].length) + '<br>';
+			/* draw obstacle if obstacle is in bounds */
+			if (!oob)
+			{
+				out += ' '.repeat(space) + obstacle[i].substr(left, right);
+			}
+
+			out += '<br>';
 		}
 	}
 
@@ -210,25 +234,15 @@ function awake()
 	/* generate ground texture */
 	worldgen();
 
-	/* update css to dynamically hide links */
-	let style = document.createElement('style');
-	style.innerHTML = `
-		@media (orientation: portrait)
-		{
-			.links
-			{
-				display: none;
-			}
-		}
-	`;
-	document.head.appendChild(style);
-
 	/* begin the update loop */
-	setInterval(update, 1000/fps);
+	interval = setInterval(update, 1000/fps);
 }
 
 function worldgen()
 {
+	/* clear existing ground */
+	ground = ''
+
 	/* generate the initial ground texture */
 	for (let i = 0; i < len; i++)
 	{
@@ -251,6 +265,9 @@ function reset()
 	/* reset sprite */	
 	char[1] = char[1].substring(0, 13) + 'oo' + char[1].substring(13 + 2);
 	char[3] = char[3].substring(0, 14) + ' ' + char[3].substring(14 + 1);
+
+	/* reset the update loop */
+	interval = setInterval(update, 1000/fps);
 }
 
 function input()

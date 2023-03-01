@@ -9,10 +9,26 @@ html, body
 	/* global font */
 	color: #fff;
 	font-family: "Roboto Mono", monospace;
-	font-size: 28px;
+	font-size: 24px;
 
 	/* no margin */
 	margin: 0;
+}
+
+#title
+{
+	/* textboxes */
+	max-width: max-content;
+	margin: 0;
+	padding: 60px;
+}
+
+#name
+{
+	/* make my name big */
+	font-weight: bold;
+	font-size: 48px;
+	display: block;
 }
 
 .links
@@ -22,13 +38,28 @@ html, body
 	bottom: 0;
 	right: 0;
 	margin: 0;
-	padding: 48px;
+	padding: 60px;
 	position: fixed;
 }
 
-.hover
+/* cool animated text */
+#typewriter
 {
-	cursor: pointer;
+    /* cursor */
+    text-overflow: "█";
+
+    /* crop text */
+    max-width: max-content;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: top;
+
+    /* animation */
+    animation-name: typing;
+    animation-duration: 6s; 
+    animation-iteration-count: .2;
+    animation-timing-function: linear;
 }
 
 .container
@@ -38,14 +69,58 @@ html, body
 	bottom: 0;
 	left: 0;
 	margin: 0;
-	padding: 48px;
+	padding: 60px;
 	position: fixed;
-	font-size: 18px;
-	white-space: nowrap;
+	font-size: 16px;
+	white-space: nowrap; 
 	width: 60ch;
-	overflow: hidden; 
-	padding-right: 0;
 }
+
+/* mobile devices */
+@media (pointer:none), (pointer:coarse) and (orientation: portrait)
+{
+	#title
+	{
+		padding-top: 375px; 
+	}
+
+	#name
+	{
+		width: min-content;
+		font-size: 1.5em;
+	}
+
+	.links
+	{
+		padding-bottom: 375px;
+	}
+
+	html, body
+	{
+		font-size: 1.5em;
+	}
+
+	.container
+	{
+		margin-left: auto;
+		bottom: 0;
+	}
+}
+
+/* shrink game in mobile landscape */
+@media (pointer:none), (pointer:coarse) and (orientation: landscape)
+{
+	.container
+	{
+		font-size: 0.4em;
+	}
+}
+
+.hover
+{
+	cursor: pointer;
+}
+
 
 a:link, a:visited
 {
@@ -58,21 +133,6 @@ a:link, a:visited
 	/* invert selection */
 	background: #fff;
 	color: #000;
-}
-
-#title
-{
-	/* textboxes */
-	max-width: max-content;
-	margin: 0;
-	padding: 48px;
-}
-
-#name
-{
-	/* make my name big */
-	font-weight: bold;
-	font-size: 36px;
 }
 
 /* blinking cursor */
@@ -103,26 +163,6 @@ a:link, a:visited
 	{
 		visibility: visible;
 	}
-}
-
-/* cool animated text */
-#typewriter
-{
-    /* cursor */
-    text-overflow: "█";
-
-    /* crop text */
-    max-width: max-content;
-    overflow: hidden;
-    white-space: nowrap;
-    display: inline-block;
-    vertical-align: top;
-
-    /* animation */
-    animation-name: typing;
-    animation-duration: 6s; 
-    animation-iteration-count: .2;
-    animation-timing-function: linear;
 }
 
 /* typing animation */
