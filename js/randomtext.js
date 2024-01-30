@@ -41,15 +41,17 @@ window.onload = () =>
 	/* array of text to display */
 	const phrases = [
 		calculateAge(new Date(2000, 11, 3)) + ' year old from cambridge',
+		'80s anime enthusiast',
 		'brainfuck extraordinaire',
 		'command line wizard',
 		'computer science student',
 		'dedicated vegetarian',
-		'devoted unix fan',
+		'devoted unix fanboy',
+		'downhill longboarder',
+		'drum and bass dj',
+		'experienced coding tutor',
 		'full stack developer',
 		'playstation 2 player in ' + new Date().getFullYear(),
-		'80s anime enthusiast',
-		'downhill longboarder',
 	];
 
 	/* array to store history */

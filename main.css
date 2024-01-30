@@ -31,6 +31,15 @@ html, body
 	display: block;
 }
 
+.body
+{
+	/* for the body paragraph */
+	max-width: max-content;
+	margin: 0;
+	padding: 60px;
+	padding-top: 0px;
+}
+
 .links
 {
 	/* lock to the bottom right */
