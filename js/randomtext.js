@@ -49,7 +49,7 @@ window.onload = () =>
 		'devoted unix fanboy',
 		'downhill longboarder',
 		'drum and bass dj',
-		'experienced coding tutor',
+		'private coding tutor',
 		'full stack developer',
 		'playstation 2 player in ' + new Date().getFullYear(),
 	];
