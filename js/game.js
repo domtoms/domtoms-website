@@ -363,5 +363,8 @@ onkeyup = function(e)
 
 ontouchstart = function(e)
 {
-	input();
+	if (awoke)
+	{
+		input();
+	}
 }
