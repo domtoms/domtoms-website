@@ -9,10 +9,29 @@ function calculateAge(dob)
 	const monthDifference = today.getMonth() - dob.getMonth();
 
 	/* have i had my birthday this year? */
-	if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dob.getDate())) {
+	if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dob.getDate()))
+	{
 		age--;
 	}
 	return age;
+}
+
+/* function for calculating years since a specific date */
+function yearsSince(date)
+{
+	/* what is today? */
+	const today = new Date();
+
+	/* how long has it been? */
+	let years = today.getFullYear() - date.getFullYear();
+	const monthDifference = today.getMonth() - date.getMonth();
+
+	/* has it been yet? */
+	if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < date.getDate()))
+	{
+		years--;
+	}
+	return years;
 }
 
 /* function for getting new phrase */
@@ -55,7 +74,6 @@ window.onload = () =>
 		'brainfuck extraordinaire',
 		'command line wizard',
 		'computing science graduate',
-		'dedicated vegetarian',
 		'downhill longboarder',
 		'flac hoarder',
 		'full stack developer',
@@ -63,6 +81,7 @@ window.onload = () =>
 		'private coding tutor',
 		'playstation 2 player in ' + new Date().getFullYear(),
 		'unix fanboy',
+		'vegetarian of ' + yearsSince(new Date(2021, 4, 19)) + ' years',
 	];
 
 	/* array to store history */
