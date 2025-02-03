@@ -1,7 +1,18 @@
 /* function for calculating age */
 function calculateAge(dob)
-{ 
-	return new Date(Date.now() - dob.getTime()).getFullYear() - 1970;
+{
+	/* what is today? */
+	const today = new Date();
+
+	/* how old am i? */
+	let age = today.getFullYear() - dob.getFullYear();
+	const monthDifference = today.getMonth() - dob.getMonth();
+
+	/* have i had my birthday this year? */
+	if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dob.getDate())) {
+		age--;
+	}
+	return age;
 }
 
 /* function for getting new phrase */
@@ -41,17 +52,17 @@ window.onload = () =>
 	/* array of text to display */
 	const phrases = [
 		calculateAge(new Date(2000, 11, 3)) + ' year old from cambridge',
-		'80s anime enthusiast',
 		'brainfuck extraordinaire',
 		'command line wizard',
-		'computer science student',
+		'computing science graduate',
 		'dedicated vegetarian',
-		'devoted unix fanboy',
 		'downhill longboarder',
-		'drum and bass dj',
-		'private coding tutor',
+		'flac hoarder',
 		'full stack developer',
+		'jungle and techno dj',
+		'private coding tutor',
 		'playstation 2 player in ' + new Date().getFullYear(),
+		'unix fanboy',
 	];
 
 	/* array to store history */
