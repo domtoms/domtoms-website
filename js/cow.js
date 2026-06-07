@@ -14,7 +14,7 @@ const cactus = [
 
 const stones = ['=', '-'];
 
-const len = 40;
+const len = 35;
 const fps = 30;
 
 let ground = '';
@@ -71,7 +71,7 @@ function draw() {
 }
 
 function update() {
-	if (!airtime && pos === 25) {
+	if (!airtime && pos === 18) {
 		airtime = 30;
 	}
 
@@ -82,7 +82,7 @@ function update() {
 	pos--;
 
 	if (pos <= -cactus[0].length) {
-		pos = len + 20 + Math.floor(Math.random() * 20);
+		pos = len + 60 + Math.floor(Math.random() * 60);
 	}
 
 	ground = ground.substring(1);

@@ -36,7 +36,7 @@ main {
 #game {
 	white-space: nowrap;
 	overflow: hidden;
-	width: 40ch;
+	width: 35ch;
 }
 
 a:link,
