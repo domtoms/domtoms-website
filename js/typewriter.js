@@ -15,9 +15,12 @@ const phrases = [
 	`${yearsSince(new Date(2000, 10, 3))} year old from cambridge`,
 	'brainfuck extraordinaire',
 	'command line wizard',
+	`developer at jagex`,
 	'flac hoarder',
 	'jungle and techno dj',
 	'london based swe',
+	`ps2 player in ${new Date().getFullYear()}`,
+	`uea graduate`,
 	`vegetarian of ${yearsSince(new Date(2021, 4, 19))} years`
 ];
 
