@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+
+html,
+body {
+	background: #000;
+	color: #fff;
+	font-family: "Roboto Mono", monospace;
+	font-size: 18px;
+	margin: 0;
+}
+
+body {
+	padding: 40px;
+}
+
+main {
+	max-width: max-content;
+	margin: 0 auto;
+}
+
+#name {
+	font-weight: bold;
+}
+
+#typewriter {
+	text-overflow: "█";
+	max-width: max-content;
+	overflow: hidden;
+	white-space: nowrap;
+	display: inline-block;
+	vertical-align: top;
+
+	animation-name: typing;
+	animation-duration: 6s;
+	animation-iteration-count: .2;
+	animation-timing-function: linear;
+}
+
+#game {
+	white-space: nowrap;
+	overflow: hidden;
+	width: 40ch;
+}
+
+a:link,
+a:visited {
+	color: #fff;
+}
+
+:selection {
+	background: #fff;
+	color: #000;
+}
+
+#typewriter:after {
+	content: "█";
+	visibility: hidden;
+
+	animation-name: cursor;
+	animation-duration: .7s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes cursor {
+	0%, 49% {
+		visibility: hidden;
+	}
+
+	50% {
+		visibility: visible;
+	}
+}
+
+@keyframes typing {
+	0% {
+		width: 0;
+	}
+
+	20%, 90% {
+		width: 100%;
+	}
+
+	100% {
+		width: 0;
+	}
+}
+
