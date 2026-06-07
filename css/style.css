@@ -9,13 +9,9 @@ body {
 	margin: 0;
 }
 
-body {
-	padding: 40px;
-}
-
 main {
 	max-width: max-content;
-	margin: 0 auto;
+	margin: 40px auto 0;
 }
 
 #name {
