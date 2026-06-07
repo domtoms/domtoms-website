@@ -10,8 +10,9 @@ body {
 }
 
 main {
-	max-width: max-content;
-	margin: 40px auto 0;
+    max-width: max-content;
+    margin: 0 auto;
+    padding: 2rem 2rem 0 2rem;
 }
 
 #name {
