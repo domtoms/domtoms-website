@@ -26,11 +26,6 @@ main {
 	white-space: nowrap;
 	display: inline-block;
 	vertical-align: top;
-
-	animation-name: typing;
-	animation-duration: 6s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
 }
 
 #cow {
