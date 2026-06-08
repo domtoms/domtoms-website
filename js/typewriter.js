@@ -19,7 +19,7 @@ const phrases = [
 	'jungle and techno dj',
 	'london based games developer',
 	`ps2 player in ${new Date().getFullYear()}`,
-	`swe at jagex`,
+	`swe @ jagex`,
 	`uea graduate`,
 	`vegetarian of ${yearsSince(new Date(2021, 4, 19))} years`
 ];
