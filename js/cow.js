@@ -1,4 +1,4 @@
-const cow = [
+const dude = [
 	'            ^__^',
 	'    _______/(oo)',
 	'/\\/(       /(__)',
@@ -13,9 +13,9 @@ const cactus = [
 ];
 
 const stones = ['=', '-'];
-
-const len = 35;
+const width = 35;
 const fps = 30;
+const density = 60;
 
 let ground = '';
 let pos = 80;
@@ -23,7 +23,7 @@ let airtime = 0;
 let frame = 0;
 let tic = 0;
 
-for (let i = 0; i < len; i++) {
+for (let i = 0; i < width; i++) {
 	ground += stones[Math.floor(Math.random() * stones.length)];
 }
 
@@ -35,18 +35,18 @@ function draw() {
 		legs = frame ? '╵|     ╵|' : '|╵     |╵';
 		out += '<br>'.repeat(cactus.length);
 	}
-	cow[4] = '   ' + legs;
+	dude[4] = '   ' + legs;
 
-	for (let i = 0; i < cow.length; i++) {
-		out += cow[i];
-		if (!airtime && i >= cow.length - cactus.length) {
-			let space = pos - cow[i].length;
+	for (let i = 0; i < dude.length; i++) {
+		out += dude[i];
+		if (!airtime && i >= dude.length - cactus.length) {
+			let space = pos - dude[i].length;
 			if (space < 0) {
 				space = 0;
 			}
 
 			out += ' '.repeat(space);
-			out += cactus[i - cow.length + cactus.length];
+			out += cactus[i - dude.length + cactus.length];
 		}
 		out += '<br>';
 	}
@@ -82,7 +82,7 @@ function update() {
 	pos--;
 
 	if (pos <= -cactus[0].length) {
-		pos = len + 60 + Math.floor(Math.random() * 60);
+		pos = width + density + Math.floor(Math.random() * density);
 	}
 
 	ground = ground.substring(1);
@@ -95,7 +95,12 @@ function update() {
 		frame = 1 - frame;
 	}
 
-	game.innerHTML = draw().replace(/ /g, '&nbsp;');
+	cow.innerHTML = draw().replace(/ /g, '&nbsp;');
 }
 
-setInterval(update, 1000 / fps);
+window.addEventListener("load", () => {
+	const cow = document.getElementById('cow');
+	cow.style.display = 'block';
+	setInterval(update, 1000 / fps);
+});
+

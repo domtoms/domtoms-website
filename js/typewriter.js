@@ -15,16 +15,16 @@ const phrases = [
 	`${yearsSince(new Date(2000, 10, 3))} year old from cambridge`,
 	'brainfuck extraordinaire',
 	'command line wizard',
-	`developer at jagex`,
 	'flac hoarder',
 	'jungle and techno dj',
-	'london based swe',
+	'london based games developer',
 	`ps2 player in ${new Date().getFullYear()}`,
+	`swe at jagex`,
 	`uea graduate`,
 	`vegetarian of ${yearsSince(new Date(2021, 4, 19))} years`
 ];
 
-window.onload = () => {
+window.addEventListener("load", () => {
 	const text = document.getElementById('typewriter');
 	const history = [];
 	const historyLen = Math.ceil(phrases.length / 2);
@@ -54,5 +54,5 @@ window.onload = () => {
 			update();
 		}
 	};
-};
+});
 
