@@ -17,7 +17,7 @@ const phrases = [
 	'command line wizard',
 	'flac hoarder',
 	'jungle and techno dj',
-	'london based games developer',
+	'london based games dev',
 	`ps2 player in ${new Date().getFullYear()}`,
 	`swe @ jagex`,
 	`uea graduate`,
