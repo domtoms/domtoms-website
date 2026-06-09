@@ -15,12 +15,7 @@ main {
     padding: 2rem;
 }
 
-#name {
-	font-weight: bold;
-}
-
 #typewriter {
-	text-overflow: "█";
 	max-width: max-content;
 	overflow: hidden;
 	white-space: nowrap;
@@ -40,19 +35,14 @@ a:visited {
 	color: #fff;
 }
 
-:selection {
+::selection {
 	background: #fff;
 	color: #000;
 }
 
-#typewriter:after {
-	content: "█";
-	visibility: hidden;
-
-	animation-name: cursor;
-	animation-duration: 1.2s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
+#typewriter::after {
+    content: "█";
+    animation: cursor 1.2s linear infinite;
 }
 
 @keyframes cursor {
