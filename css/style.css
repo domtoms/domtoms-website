@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("../fonts/roboto-mono.ttf") format("truetype");
+}
 
 html,
 body {

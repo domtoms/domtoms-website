@@ -1,16 +1,16 @@
-const dude = [
-	'            ^__^',
-	'    _______/(oo)',
-	'/\\/(       /(__)',
-	'   | w----||',
-	'   ||     ||'
-];
+const dude = String.raw`
+            ^__^
+    _______/(oo)
+/\/(       /(__)
+   | w----||
+   ||     ||
+`.slice(1, -1).split('\n');
 
-const cactus = [
-	'  |  ',
-	'(_|_)',
-	'  |  '
-];
+const cactus = String.raw`
+  |  
+(_|_)
+  |  
+`.slice(1, -1).split('\n');
 
 const stones = ['=', '-'];
 const width = 35;
